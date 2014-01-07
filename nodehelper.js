@@ -23,7 +23,7 @@
 			return typeof str === 'string' || str instanceof String;
 		},
 
-		// http://dl.dropboxusercontent.com/u/35146/js/tests/isNumber.html
+		// http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
 		isNumber: function ( num ) {
 			return !isNaN( parseFloat( num ) ) && isFinite( num );
 		},
@@ -57,7 +57,7 @@
 
 				for ( var i = 0, l = obj.length; i < l; i++ )
 					callback.call( obj, i, obj.charAt( i ) );
-				
+
 			} else {
 				this.nhLog( 'each: invalid type' );
 			}
@@ -76,12 +76,14 @@
 			return ( num + 0.5 ) | 0;
 		},
 
-		// lerp function, not 100% sure this is useful for nodejs - possibly smoothing out test results
+		// http://en.wikipedia.org/wiki/Lerp_(computing)
+		// not 100% sure this is useful for nodejs - possibly smoothing out test results
 		lerp: function ( fromNum, toNum, t ) {
 			return fromNum + ( toNum - fromNum ) * t;
 		},
 
 		// Fisher-Yates shuffle
+		// http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
 		shuffle: function ( arr ) {
 			if ( !arr || !arr.isArray )
 				return false;
@@ -91,7 +93,7 @@
 				j, t;
 
 			while ( --i > 0 ) {
-				j = ( Math.random() * ( i + 1 ) ) | 0;
+				j = this.bitFloor( Math.random() * ( i + 1 ) );
 				t = n[ j ];
 				n[ j ] = n[ i ];
 				n[ i ] = t;
@@ -112,7 +114,7 @@
 			if ( !shuffleOverride )
 				n = this.shuffle( n );
 
-			return n[ ( Math.random() * n.length ) | 0 ];
+			return n[ this.bitFloor( Math.random() * n.length ) ];
 		},
 
 		// using with one argument should just make a clone of the object

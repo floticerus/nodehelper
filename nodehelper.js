@@ -3,13 +3,15 @@
  */
 
 ;(function() {
-	// log helper
-	function nhLog( msg ) {
-		return console.log( 'nodehelper: ' + msg.toString() );
+	function nh( opts ) {
+		opts = opts || {};
+
+		this.logging = opts.logging || true;
 	}
 
-	// empty placeholder function
-	function nh() {}
+	nh.prototype.nhLog = function() {
+		return this.logging ? console.log( 'nodehelper: ' + msg.toString() ) : false;
+	}
 
 	nh.prototype.isString = function( str ) {
 		return typeof str === 'string' || str instanceof String;
@@ -26,6 +28,7 @@
 
 	nh.prototype.each = function ( obj, callback ) {
 		if ( obj.isArray ) {
+			// don't see the need for an isArray fallback in node
 			// loops a normal array - []
 
 			for ( var i = 0, l = obj.length; i < l; i++ )
@@ -49,7 +52,7 @@
 			for ( var i = 0, l = obj.length; i < l; i++ )
 				callback.call( obj, obj.charAt( i ) );
 		} else {
-			nhLog( 'each: invalid type' );
+			this.nhLog( 'each: invalid type' );
 		}
 	};
 
@@ -108,7 +111,7 @@
 		var a = arguments;
 
 		if ( a.length === 0 )
-			return nhLog( 'extend requires at least 1 argument' );
+			return this.nhLog( 'extend requires at least 1 argument' );
 
 		for ( var i = 0, l = a.length, n = Object.create( a[ 0 ] ); i < l; i++ )
 			for ( var obj in a[ i ] )

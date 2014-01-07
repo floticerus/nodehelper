@@ -9,7 +9,10 @@
 
 	nh.prototype = {
 		set: function ( key, val ) {
-			this[ key ] = val;
+			if ( this.hasOwnProperty( key ) )
+				this[ key ] = val;
+			else
+				this.nhLog( 'set: invalid property' );
 		},
 
 		nhLog: function ( msg ) {
@@ -53,7 +56,7 @@
 				// loops a string - 'foo'
 
 				for ( var i = 0, l = obj.length; i < l; i++ )
-					callback.call( obj, obj.charAt( i ) );
+					callback.call( obj, i, obj.charAt( i ) );
 			} else {
 				this.nhLog( 'each: invalid type' );
 			}

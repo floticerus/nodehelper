@@ -3,13 +3,15 @@
  */
 
 ;(function() {
-	function nh( opts ) {
-		opts = opts || {};
-
-		this.logging = opts.logging || true;
+	function nh() {
+		this.logging = true;
 	}
 
-	nh.prototype.nhLog = function() {
+	nh.prototype.set = function ( key, val ) {
+		this[ key ] = val;
+	}
+
+	nh.prototype.nhLog = function ( msg ) {
 		return this.logging ? console.log( 'nodehelper: ' + msg.toString() ) : false;
 	}
 

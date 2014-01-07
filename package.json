@@ -1,0 +1,14 @@
+{
+	"name": "nodehelper",
+	"description": "a small set of helpers targeted at but not limited to nodejs",
+	"version": "0.0.1",
+	"main": "nodehelper.js",
+	"author": "Kevin von Flotow",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kvonflotow/nodehelper.git"
+	},
+	"engines": {
+		"node": "*"
+	}
+}

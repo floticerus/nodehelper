@@ -57,6 +57,7 @@
 
 				for ( var i = 0, l = obj.length; i < l; i++ )
 					callback.call( obj, i, obj.charAt( i ) );
+				
 			} else {
 				this.nhLog( 'each: invalid type' );
 			}
@@ -104,11 +105,14 @@
 			if ( !arr || !arr.isArray )
 				return false;
 
+			// make a temporary copy of the array
+			var n = arr.slice( 0 );
+
 			// shuffle the array before returning to make it really random
 			if ( !shuffleOverride )
-				arr = this.shuffle( arr );
+				n = this.shuffle( n );
 
-			return arr[ ( Math.random() * arr.length ) | 0 ];
+			return n[ ( Math.random() * n.length ) | 0 ];
 		},
 
 		// using with one argument should just make a clone of the object

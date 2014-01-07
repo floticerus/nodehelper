@@ -15,6 +15,11 @@
 		return typeof str === 'string' || str instanceof String;
 	};
 
+	// http://dl.dropboxusercontent.com/u/35146/js/tests/isNumber.html
+	nh.prototype.isNumber = function ( num ) {
+		return !isNaN( parseFloat( num ) ) && isFinite( num );
+	};
+
 	nh.prototype.isObject = function( obj ) {
 		return obj === Object( obj ) && Object.prototype.toString.call( obj ) !== '[object Array]';
 	};
@@ -26,6 +31,9 @@
 		} else if ( obj === Object( obj ) ) {
 			for ( var key in obj )
 				callback.call( obj, key, obj[ key ] );
+		} else if ( this.isNumber( obj ) ) {
+			for ( var i = 0; i < obj; i++ )
+				callback.call( obj, i );
 		}
 	};
 

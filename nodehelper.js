@@ -26,14 +26,30 @@
 
 	nh.prototype.each = function ( obj, callback ) {
 		if ( obj.isArray ) {
+			// loops a normal array - []
+
 			for ( var i = 0, l = obj.length; i < l; i++ )
 				callback.call( obj, i, obj[ i ] );
+
 		} else if ( obj === Object( obj ) ) {
+			// loops an object - {}
+
 			for ( var key in obj )
 				callback.call( obj, key, obj[ key ] );
+
 		} else if ( this.isNumber( obj ) ) {
+			// loops a number - 23
+
 			for ( var i = 0; i < obj; i++ )
 				callback.call( obj, i );
+
+		} else if ( this.isString( obj ) ) {
+			// loops a string - 'foo'
+
+			for ( var i = 0, l = obj.length; i < l; i++ )
+				callback.call( obj, obj.charAt( i ) );
+		} else {
+			nhLog( 'each: invalid type' );
 		}
 	};
 

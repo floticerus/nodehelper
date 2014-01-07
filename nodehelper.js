@@ -39,7 +39,7 @@
 		return ( num + 1 ) | 0;
 	};
 
-	nh.prototype.bitRound = function () {
+	nh.prototype.bitRound = function ( num ) {
 		return ( num + 0.5 ) | 0;
 	};
 

@@ -33,8 +33,8 @@
 			return obj === Object( obj ) && Object.prototype.toString.call( obj ) !== '[object Array]';
 		},
 
-		isFunction: function () {
-
+		isFunction: function ( obj ) {
+			return Object.prototype.toString.call( obj ) === '[object Function]';
 		},
 
 		each: function ( obj, callback ) {

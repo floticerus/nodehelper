@@ -1,5 +1,6 @@
-/*
- * 
+/** @preserve nodehelper
+ *  @copyright 2014 Kevin von Flotow <vonflow@gmail.com>
+ *  @license MIT License <http://opensource.org/licenses/MIT>
  */
 
 ;(function() {
@@ -147,8 +148,6 @@
 			return n;
 		}
 	};
-
-	//return new nh();
 
 	module.exports = new nh();
 })();

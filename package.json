@@ -1,7 +1,7 @@
 {
 	"name": "nodehelper",
 	"description": "a small set of helpers targeted at but not limited to nodejs",
-	"version": "0.0.11",
+	"version": "0.0.12",
 	"main": "nodehelper.js",
 	"author": "Kevin von Flotow",
 	"repository": {

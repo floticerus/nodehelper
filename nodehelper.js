@@ -32,7 +32,19 @@
 			return obj === Object( obj ) && Object.prototype.toString.call( obj ) !== '[object Array]';
 		},
 
+		isFunction: function () {
+
+		},
+
 		each: function ( obj, callback ) {
+			if ( !obj )
+				return this.nhLog( 'each: obj is required' );
+
+			if ( !callback )
+				return this.nhLog( 'each: callback is required' );
+			else if ( !this.isFunction( callback ) )
+				return this.nhLog( 'each: callback must be a function' );
+
 			if ( Array.isArray( obj ) ) {
 				// loops a normal array - []
 
@@ -81,6 +93,11 @@
 			return fromNum + ( toNum - fromNum ) * t;
 		},
 
+		// example: nh.getPointInRange( 0.2, 0, 523 ) returns 104.6
+		getPointInRange: function ( targetPoint, rangeMin, rangeMax ) {
+			return ( ( rangeMax - rangeMin ) * targetPoint ) + rangeMin;
+		},
+
 		// Fisher-Yates shuffle
 		// http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
 		shuffle: function ( arr ) {
@@ -108,8 +125,6 @@
 
 			// make a temporary copy of the array
 			var n = arr.slice( 0 );
-
-			console.log( 'test' );
 
 			// shuffle the array before returning to make it really random
 			if ( !shuffleOverride )

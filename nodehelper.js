@@ -21,7 +21,7 @@
 		},
 
 		isString: function ( str ) {
-			return typeof str === 'string' || str instanceof String;
+			return typeof( str ) === 'string' || str instanceof String;
 		},
 
 		// http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric

@@ -33,8 +33,7 @@
 		},
 
 		each: function ( obj, callback ) {
-			if ( obj.isArray ) {
-				// don't see the need for an isArray fallback in node
+			if ( Array.isArray( obj ) ) {
 				// loops a normal array - []
 
 				for ( var i = 0, l = obj.length; i < l; i++ )
@@ -85,7 +84,7 @@
 		// Fisher-Yates shuffle
 		// http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
 		shuffle: function ( arr ) {
-			if ( !arr || !arr.isArray )
+			if ( !arr || !Array.isArray( arr ) )
 				return false;
 
 			var n = arr.slice( 0 ),
@@ -104,11 +103,13 @@
 
 		// setting shuffleOverride to true disables the shuffle - useful for one-off randoms where performance is a concern
 		randomFromArray: function ( arr, shuffleOverride ) {
-			if ( !arr || !arr.isArray )
+			if ( !arr || !Array.isArray( arr ) )
 				return false;
 
 			// make a temporary copy of the array
 			var n = arr.slice( 0 );
+
+			console.log( 'test' );
 
 			// shuffle the array before returning to make it really random
 			if ( !shuffleOverride )
@@ -131,6 +132,8 @@
 			return n;
 		}
 	};
+
+	//return new nh();
 
 	module.exports = new nh();
 })();
